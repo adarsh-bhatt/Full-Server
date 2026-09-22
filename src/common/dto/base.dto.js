@@ -1,29 +1,30 @@
-
 import Joi from "joi";
 
+class DtoBase {
 
-class DtoBase  {
+    static schema = Joi.object({});
 
-static schema = Joi.object({})
+    static validate(data) {
 
-static validate(data){
+        const { error, value } = this.schema.validate(data, {
+            abortEarly: false,
+            stripUnknown: true
+        });
 
-const {error , value}=  this.schema.validate(data,{
-    abortEarly:false,
-    stripUnknown:true
-})
+        if (error) {
+            const errors = error.details.map((d) => d.message);
 
+            return {
+                error: errors,
+                value: null
+            };
+        }
 
-if (error) {
-    const error = error.detail.map((d)=>d.message)
-    return {error,value:null}
+        return {
+            error: null,
+            value
+        };
+    }
 }
 
-return{error:null,value}
-}
-
-
-}
-
-
-export default DtoBase
+export default DtoBase;

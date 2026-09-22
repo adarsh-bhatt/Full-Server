@@ -66,4 +66,27 @@ const forgotPassword = async(req,res) =>{
   ApiResponse.ok(res,'Password Change')
 }
 
-export{register,login,logout,getMe,forgotPassword}
+const uploadAvatar = async (req, res) => {
+    try {
+
+        const file = req.file;
+
+        const result = await Authservice.uploadAvatar(
+            file,
+            req.user.id
+        );
+
+        return ApiResponse.ok(
+            res,
+            "Avatar Uploaded Successfully",
+            {
+                avatarUrl: result.url
+            }
+        );
+
+    } catch (error) {
+        throw error;
+    }
+};
+
+export{register,login,logout,getMe,forgotPassword,uploadAvatar}

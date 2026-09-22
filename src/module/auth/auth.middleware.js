@@ -9,15 +9,15 @@ let token
 
 if(req.headers.authorization?.startsWith('Bearer ')){
 
-    token = req.header.authorization.split(' ')[1]
+    token = req.headers.authorization.split(' ')[1]
 }
 if (!token) throw new ApiError.unauthorized('Invalid Token')
 
 const decoded =verifyAccessToken(token)
 
 
-const user = await User.findById(decoded.id)
-if (!user) throw new ApiError.unauthorized('No User Founded')
+const user = await User.findById(decoded.userId)
+if (!user) throw  ApiError.unauthorized('No User Founded')
 
 req.user = {
 id: user._id,

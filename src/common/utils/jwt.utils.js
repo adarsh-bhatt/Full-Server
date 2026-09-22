@@ -13,7 +13,7 @@ return jwt.sign(paylord, process.env.JWT_ACCESS_SECRET,{
 }
 
 const verifyAccessToken = (token) =>{
-jwt.verify(token, process.env.JWT_ACCESS_SECRET)
+ return jwt.verify(token, process.env.JWT_ACCESS_SECRET)
 }
 
 

@@ -34,6 +34,12 @@ role: {
   enum: ["customer", "seller", "admin"],
   default: "customer"
 },
+
+
+avatar:{
+    type:String,
+    default:false,
+},
 isVerified:{
 
     type:Boolean,

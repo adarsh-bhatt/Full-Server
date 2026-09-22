@@ -1,45 +1,32 @@
 class ApiError extends Error {
 
-constructor(message,statuscode){
+    constructor(message, statusCode) {
+        super(message);
 
+        this.statusCode = statusCode;
 
-    super(message)
+        Error.captureStackTrace(this, this.constructor);
+    }
 
-    this.statuscode = statuscode
-    Error.captureStackTrace(this,this.constructor)
+    static badRequest(message = "Bad Request") {
+        return new ApiError(message, 400);
+    }
+
+    static conflict(message = "Conflict") {
+        return new ApiError(message, 409);
+    }
+
+    static forbidden(message = "Forbidden") {
+        return new ApiError(message, 403);
+    }
+
+    static notFound(message = "Not Found") {
+        return new ApiError(message, 404);
+    }
+
+    static unauthorized(message = "Unauthorized") {
+        return new ApiError(message, 401);
+    }
 }
 
-
-static badrequest(message = 'Unauthorized'){
-
-    return new ApiError(401,message)
-}
-static badrequest(message = 'badRequest'){
-
-    return new ApiError(400,message)
-}
-static conflict(message = 'conflict'){
-
-    return new ApiError(409,message)
-}
-static forbidden(message = 'forbidden'){
-
-    return new ApiError(412,message)
-}
-static notFound(message = 'Not Found'){
-
-    return new ApiError(404,message)
-}
-static unauthorized(message = 'unauthorized'){
-
-    return new ApiError(412,message)
-}
-
-
-
-
-
-    
-}
-
-export default ApiError
+export default ApiError;
