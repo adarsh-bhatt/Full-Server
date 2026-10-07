@@ -1,4 +1,4 @@
-import ApiResponse from "../../../common/utils/api.response";
+import ApiResponse from "../../../common/utils/api.response.js";
 import * as ownerservice from '../services/owner.service.js'
 
 
